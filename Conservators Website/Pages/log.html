@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            background-image: url('./images/background.jpeg');
+            background-position: center;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: rgba(206, 203, 203, 0.5);
+            backdrop-filter: blur(7px);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            font-size:35px;
+            font-family: sans-serif;
+            letter-spacing:4px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size:25px;
+            font-weight: bold;
+            border-radius:10px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 20px;
+            background-color: springgreen;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            border-radius:40px;
+        }
+
+        .form-group button:hover {
+            background-color:black;
+        }
+        sup {
+            color: red;
+            font-size: 2em; 
+            font-weight: 800;
+        }
+
+        span {
+            color: white;
+            font-family: sans-serif;
+            font-size: 25px; 
+        }
+
+        input::placeholder {
+            font-weight: 600;
+            font-size: 20px; 
+            color: black;
+        }
+        
+        p {
+            color: red;
+            font-size: 15px; 
+            font-weight: 700;
+            display: none;
+        }
+        span{
+            font-size:25px;
+            font-weight: 600;
+            font-family: sans-serif;
+            letter-spacing: 3px;
+        }
+        .form-group button:active {
+            background-color: black;
+            transform: translateY(4px); 
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        b,a{
+            letter-spacing:2px;
+            font-size:20px;
+            font-weight:600;
+            text-decoration: none;
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login Form</h2>
+    <div class="form-group">
+        <label for="username"><sup><span style="font-size:30px; color:black;">License Number</span> * *</sup></label>
+        <input type="text" id="username" placeholder="Enter your username" required>
+        <p id="demo">Fill User Name Properly</p>
+    </div>
+    <div class="form-group">
+        <label for="password"><sup><span style="font-size:30px; color:black;">Password</span> * *</sup></label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <p id="demo1">Password Must Contain Atleast 8 Characters</p>
+    </div>
+    <div class="form-group">
+        <button type="button" onclick="login()" id="btn"><span>Login</span></button><br><br>
+        <b style="color:black;">If you dont have Account? <a href="./registration.html" style="color:red;" target="_self">SignUp</a> </b>
+    </div>
+</div>
+
+<script>
+    var btn = document.getElementById('btn');
+    btn.addEventListener('click',login);
+  
+
+    function login() {
+        var username = document.getElementById("username");
+        var password = document.getElementById("password");
+        var demo = document.querySelector('#demo');
+        var demo1 = document.querySelector('#demo1');
+
+        if(username.value === '') {
+            demo.style.display="block";
+            username.style.border="3px solid red";
+            alert("Please fill the username field");
+        }
+        else {
+            demo.style.display="none";
+            username.style.border="none";
+        }
+        if(password.value === '') {
+            demo1.style.display="block";
+            password.style.border="3px solid red";
+            alert("Please fill the password field");
+        }
+        else if(password.value.length !== 8 ) {
+            demo1.style.display="block";
+            password.style.border="3px solid red";
+            alert("Password Must Contain Atlease 8 characters or numbers");
+        }
+        else {
+            demo1.style.display="none";
+            password.style.border="none";
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Entry Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('images/image.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    form {
+      background-color:rgba(0,0,0,0.5);
+      opacity:2.0;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      color:white;
+      width:35%;
+
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      border-radius:10px;
+      padding:0.7em;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      border: 3px solid black;
+      border:none;
+      font-weight:bold;
+      font-size:25px;
+
+    }
+    input[type="file"] {
+      border:3px solid white;
+    }
+
+    button {
+      background-color: springgreen;
+      width: 100px;
+      color: #fff;
+      padding: 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size:20px;
+      width:95%;
+      margin-left:1%;
+    }
+
+    button:hover {
+      background-color: black;
+      color:white;
+    }
+
+    h1 {
+      text-align: center;
+      color: #4caf50;
+    }
+    sup{
+      color:red;
+      font-size:2.5em;
+      font-weight:800;
+
+    }
+    span{
+      color:white;
+      font-family: sans-serif;
+      font-size:25px;
+    }
+    b{
+      font-size:30px;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <form action="#" method="post" enctype="multipart/form-data">
+    <h1 style="font-size: 50px;">DATA ENTRY FORM</h1>
+    <label for="species"><sup><span style="font-size:40px;">Species  </span>* *</sup></label>
+    <input type="text" id="species" name="species" required>
+
+    <label for="threats"><sup><span style="font-size:40px;">Threats  </span>*</sup></label>
+    <input type="text" id="threats" name="threats" required>
+
+    <label for="population"><sup><span style="font-size:40px;">Population Size  </span>*</sup></label>
+    <input type="number" id="population" name="population" required>
+
+    <label for="image"><sup><span style="font-size:40px;">Image Upload </span>* *</sup></label>
+    <input type="file" id="image" name="image" accept="image/*" required>
+
+    <button type="submit"><b>Submit</b></button>
+  </form>
+
+</body>
+</html>
