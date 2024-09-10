@@ -310,8 +310,8 @@ p{
             <img src="images/images.png" style=" width:50%;"alt="image not found">
         </div>
         <div class="nav-center">
-            <input type="text" placeholder="S E A R C H ...">
-            <button type="button" id="btn">🔍</button>
+            <input type="text" placeholder="S E A R C H ..." id="speciesname">
+            <button type="button" id="search-btn" onclick="handleClick()">🔍</button>
         </div>
         <div class="nav-right">
             <a href="./DataEntry.html" target="_self">Species Form</a>
@@ -425,6 +425,44 @@ The bald eagle is noted for having flown with the heaviest load verified to be c
         }
         scrollBottom = !scrollBottom;
     });
+
+let search_btn = document.getElementById('search-btn');
+search_btn.addEventListener('click',handleClick);
+
+    function handleClick(event) {
+            event.preventDefault();
+            const speciesName = document.getElementById('speciesname').value;
+            if (!speciesName === '') {
+                alert('Species name is required');
+                return;
+            }
+            fetch('/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ speciesName: speciesName }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to search');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.speciesName) {
+                    window.location.href = `/search?speciesName=${encodeURIComponent(data.speciesName)}`;
+                } else {
+                    throw new Error('Invalid response');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Error occurred while searching");
+            });
+        }
+
+   
 
 
     </script>
