@@ -5,7 +5,7 @@ const path = require('path');
 const admin = require("firebase-admin");
 const { getFirestore } = require('firebase-admin/firestore');
 
-const serviceAccount = require("./serviceAccountKey.json");
+const serviceAccount = require("./key.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -60,7 +60,47 @@ app.post('/signup', (req, res) => {
 
 app.get('/interface', (req, res) => {
     res.render('interface');  
-})
+});
+
+app.post('/search', (req, res) => {
+    app.post('/search', (req, res) => {
+        const { speciesName } = req.body;
+        console.log(speciesName);
+        if (speciesName) {
+            res.status(201).json({ message: "Search term received", speciesName: speciesName });
+        } else {
+            res.status(404).json({ error: 'Species not found' });
+        }
+    });
+    
+});
+app.post('/search', (req, res) => {
+    const { speciesName } = req.body;
+    console.log(speciesName);
+    if (speciesName) {
+        res.status(201).json({ speciesName });
+    } else {
+        res.status(404).json({ error: 'Species name not found' });
+    }
+});
+
+app.get('/search', (req, res) => {
+    const { speciesName } = req.query;
+    if (!speciesName) {
+        return res.status(400).send('Bad Request');
+    }
+
+    const apiUrl = `https://api-ninjas.com/api/animals?name=${encodeURIComponent(speciesName)}`;
+    const apiKey = '0A5zW2uDWmEzJD0xmiaYJQ==fUlW6DZJkMuJWNie'; 
+
+    request({ url: apiUrl, json: true, headers: { 'X-Api-Key': apiKey } }, (err, response, body) => {
+        if (err || !body) {
+            return res.status(500).send('Internal Server Error');
+        }
+        res.render('result', { details: body });
+    });
+});
+
 app.listen(8080, () => {
     console.log('server is running on http://localhost:8080');
 });
