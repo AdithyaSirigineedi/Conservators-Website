@@ -12,6 +12,8 @@
             padding: 0;
             box-sizing: border-box;
             font-family: "Poppins", sans-serif;
+            font-size:25px;
+
         }
         #wildlife-details {
             width: 100vw;
@@ -21,34 +23,22 @@
             display: flex;
             padding: 2em;
         }
-        #image {
-            padding: 2em;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 1em;
-            width: 40%;
-        }
-        #image img {
-            max-width: 100%;
-            border-radius: 5px;
-        }
         #info {
             padding: 2em;
             display: flex;
             flex-direction: column;
             gap: 1em;
-            width: 60%;
+            width: 100%;
         }
         .rating {
-            background-color: lightgreen;
+            background-color:paleturquoise;
             color: black;
             padding: 1.5em 2em;
             border-radius: 1em;
             display: flex;
             flex-direction: column;
             gap: 1em;
+            width: 100%;
         }
         h1 {
             font-size: 2em;
@@ -69,43 +59,59 @@
 </head>
 <body>
     <div id="wildlife-details">
-            <div class="rating">
-                <h2 style="text-align: center; margin-bottom: 3px;"><strong>Details</strong></h2>
-                <ul class="feature-list">
+        <div class="rating">
+            <h2 style="text-align: center; margin-bottom: 3px;"><strong>Details</strong></h2>
+            <ul class="feature-list">
+                <% if (wildlife) { %>
                     <li><strong>Common Name:</strong> <%= wildlife.name %></li>
-                    <li><strong>Scientific Name:</strong> <%= wildlife.taxonomy.scientific_name %></li>
-                    <li><strong>Locations:</strong> <%= wildlife.locations.join(', ') %></li>
-                    <li><strong>Habitat:</strong> <%= wildlife.characteristics.habitat %></li>
-                    <li><strong>Top Speed:</strong> <%= wildlife.characteristics.top_speed %></li>
-                    <li><strong>Lifespan:</strong> <%= wildlife.characteristics.lifespan %></li>
-                    <li><strong>Weight:</strong> <%= wildlife.characteristics.weight %></li>
-                    <li><strong>Length:</strong> <%= wildlife.characteristics.length %></li>
-                    <li><strong>Diet:</strong> <%= wildlife.characteristics.diet %></li>
-                    <li><strong>Average Litter Size:</strong> <%= wildlife.characteristics.average_litter_size %></li>
-                    <li><strong>Predators:</strong> <%= wildlife.characteristics.predators %></li>
-                    <li><strong>Main Prey:</strong> <%= wildlife.characteristics.main_prey %></li>
-                    <li><strong>Lifestyle:</strong> <%= wildlife.characteristics.lifestyle %></li>
-                    <li><strong>Skin Type:</strong> <%= wildlife.characteristics.skin_type %></li>
-                    <li><strong>Color:</strong> <%= wildlife.characteristics.color %></li>
-                </ul>
-            </div>
-        <div id="info">
-            <h1><%= wildlife.name %></h1>
-            <p><strong>Common Name:</strong> <%= wildlife.name %></p>
-            <p><strong>Scientific Name:</strong> <%= wildlife.taxonomy.scientific_name %></p>
-            <p><strong>Locations:</strong> <%= wildlife.locations.join(', ') %></p>
-            <p><strong>Habitat:</strong> <%= wildlife.characteristics.habitat %></p>
-            <p><strong>Top Speed:</strong> <%= wildlife.characteristics.top_speed %></p>
-            <p><strong>Lifespan:</strong> <%= wildlife.characteristics.lifespan %></p>
-            <p><strong>Weight:</strong> <%= wildlife.characteristics.weight %></p>
-            <p><strong>Length:</strong> <%= wildlife.characteristics.length %></p>
-            <p><strong>Diet:</strong> <%= wildlife.characteristics.diet %></p>
-            <p><strong>Average Litter Size:</strong> <%= wildlife.characteristics.average_litter_size %></p>
-            <p><strong>Predators:</strong> <%= wildlife.characteristics.predators %></p>
-            <p><strong>Main Prey:</strong> <%= wildlife.characteristics.main_prey %></p>
-            <p><strong>Lifestyle:</strong> <%= wildlife.characteristics.lifestyle %></p>
-            <p><strong>Skin Type:</strong> <%= wildlife.characteristics.skin_type %></p>
-            <p><strong>Color:</strong> <%= wildlife.characteristics.color %></p>
+                    <% if (wildlife.taxonomy && wildlife.taxonomy.scientific_name) { %>
+                        <li><strong>Scientific Name:</strong> <%= wildlife.taxonomy.scientific_name %></li>
+                    <% } %>
+                    <% if (wildlife.locations && wildlife.locations.length) { %>
+                        <li><strong>Locations:</strong> <%= wildlife.locations.join(', ') %></li>
+                    <% } %>
+                    <% if (wildlife.characteristics) { %>
+                        <% if (wildlife.characteristics.habitat) { %>
+                            <li><strong>Habitat:</strong> <%= wildlife.characteristics.habitat %></li>
+                        <% } %>
+                        <% if (wildlife.characteristics.top_speed) { %>
+                            <li><strong>Top Speed:</strong> <%= wildlife.characteristics.top_speed %></li>
+                        <% } %>
+                        <% if (wildlife.characteristics.lifespan) { %>
+                            <li><strong>Lifespan:</strong> <%= wildlife.characteristics.lifespan %></li>
+                        <% } %>
+                        <% if (wildlife.characteristics.weight) { %>
+                            <li><strong>Weight:</strong> <%= wildlife.characteristics.weight %></li>
+                        <% } %>
+                        <% if (wildlife.characteristics.length) { %>
+                            <li><strong>Length:</strong> <%= wildlife.characteristics.length %></li>
+                        <% } %>
+                        <% if (wildlife.characteristics.diet) { %>
+                            <li><strong>Diet:</strong> <%= wildlife.characteristics.diet %></li>
+                        <% } %>
+                        <% if (wildlife.characteristics.average_litter_size) { %>
+                            <li><strong>Average Litter Size:</strong> <%= wildlife.characteristics.average_litter_size %></li>
+                        <% } %>
+                        <% if (wildlife.characteristics.predators) { %>
+                            <li><strong>Predators:</strong> <%= wildlife.characteristics.predators %></li>
+                        <% } %>
+                        <% if (wildlife.characteristics.main_prey) { %>
+                            <li><strong>Main Prey:</strong> <%= wildlife.characteristics.main_prey %></li>
+                        <% } %>
+                        <% if (wildlife.characteristics.lifestyle) { %>
+                            <li><strong>Lifestyle:</strong> <%= wildlife.characteristics.lifestyle %></li>
+                        <% } %>
+                        <% if (wildlife.characteristics.skin_type) { %>
+                            <li><strong>Skin Type:</strong> <%= wildlife.characteristics.skin_type %></li>
+                        <% } %>
+                        <% if (wildlife.characteristics.color) { %>
+                            <li><strong>Color:</strong> <%= wildlife.characteristics.color %></li>
+                        <% } %>
+                    <% } %>
+                <% } else { %>
+                    <li>No details available for this species.</li>
+                <% } %>
+            </ul>
         </div>
     </div>
 </body>
