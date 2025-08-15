@@ -29,9 +29,8 @@ A web-based application designed for wildlife conservators to monitor and manage
 
 To run the project locally:
 
-```bash
 # Clone the repository
-git clone https://github.com/your-username/conservators-webapp.git
+git clone https://github.com/AdithyaSirigineedi/Conservators-Website.git
 cd conservators-webapp
 
 # Install dependencies
