@@ -94,7 +94,7 @@ app.get('/search', (req, res) => {
     }
 
     const apiUrl = `https://api.api-ninjas.com/v1/animals?name=${encodeURIComponent(speciesName)}`;
-    const apiKey = '0A5zW2uDWmEzJD0xmiaYJQ==fUlW6DZJkMuJWNie'; 
+    const apiKey = 'your-apikey'; 
 
     request({ url: apiUrl, json: true, headers: { 'X-Api-Key': apiKey } }, (err, response, body) => {
         if (err || !body) {
